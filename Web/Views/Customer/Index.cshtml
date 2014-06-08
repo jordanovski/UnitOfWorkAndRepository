@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Customers";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<h2>Customers</h2>
+
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<h2>List of Customers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table style="width: 100%; padding: 10px;">
+    <tr style="background-color: lightgray; padding: 10px;">
+        <th>#</th>
+        <th>
+            Company
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Order Date
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.Customers)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(
+                    "Edit", "Edit", new { id = item.CustomerID }) |
+
+                @Html.ActionLink(
+                    "Details", "Details", new { id = item.CustomerID }) |
+
+                @Html.ActionLink(
+                    "Delete", "Delete", new { id = item.CustomerID })
+            </td>
+            <td>
+                @item.CompanyName
+            </td>
+            <td>
+                @item.ContactName
+            </td>
+            <td>
+                @item.ContactTitle
+            </td>
+            <td>
+                @if (item.Orders.Count > 1)
+                {
+                    @*@item.Orders[1].OrderDate.ToShortDateString()*@
+                }
+            </td>
+        </tr>
+    }
+
+
+    <tr>
+        <td colspan="9">
+            @Html.PagedListPager(
+                (IPagedList)ViewBag.Customers, page =>
+                    Url.Action("Index", new { page }))
+        </td>
+    </tr>
+
+</table>
