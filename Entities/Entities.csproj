@@ -44,6 +44,8 @@
     <Compile Include="CustomerDemographics.cs" />
     <Compile Include="Customers.cs" />
     <Compile Include="Employees.cs" />
+    <Compile Include="IObjectState.cs" />
+    <Compile Include="ObjectState.cs" />
     <Compile Include="Orders.cs" />
     <Compile Include="OrderDetails.cs" />
     <Compile Include="Products.cs" />

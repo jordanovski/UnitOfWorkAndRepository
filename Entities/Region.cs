@@ -5,11 +5,11 @@ namespace Entities
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Region")]
-    public partial class Region
+    public partial class Region : IObjectState
     {
         public Region()
         {
-            Territories = new HashSet<Territories>();
+            Territories = new List<Territories>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -20,5 +20,8 @@ namespace Entities
         public string RegionDescription { get; set; }
 
         public virtual ICollection<Territories> Territories { get; set; }
+
+        [NotMapped]
+        public ObjectState State { get; set; }
     }
 }

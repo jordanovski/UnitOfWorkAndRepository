@@ -5,11 +5,11 @@ namespace Entities
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Orders
+    public partial class Orders : IObjectState
     {
         public Orders()
         {
-            Order_Details = new HashSet<OrderDetails>();
+            Order_Details = new List<OrderDetails>();
         }
 
         [Key]
@@ -56,5 +56,8 @@ namespace Entities
         public virtual ICollection<OrderDetails> Order_Details { get; set; }
 
         public virtual Shippers Shippers { get; set; }
+
+        [NotMapped]
+        public ObjectState State { get; set; }
     }
 }

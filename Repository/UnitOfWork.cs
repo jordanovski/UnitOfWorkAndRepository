@@ -52,9 +52,7 @@ namespace Repository
             {
                 var repositoryType = typeof(Repository<>);
 
-                var repositoryInstance =
-                    Activator.CreateInstance(repositoryType
-                            .MakeGenericType(typeof(T)), context);
+                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), context);
 
                 repositories.Add(type, repositoryInstance);
             }

@@ -2,12 +2,13 @@ namespace Entities
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Territories
+    public partial class Territories : IObjectState
     {
         public Territories()
         {
-            Employees = new HashSet<Employees>();
+            Employees = new List<Employees>();
         }
 
         [Key]
@@ -23,5 +24,8 @@ namespace Entities
         public virtual Region Region { get; set; }
 
         public virtual ICollection<Employees> Employees { get; set; }
+
+        [NotMapped]
+        public ObjectState State { get; set; }
     }
 }

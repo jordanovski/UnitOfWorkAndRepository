@@ -1,10 +1,7 @@
 ﻿using Entities;
 using PagedList;
 using Repository;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Web.Controllers
@@ -30,8 +27,7 @@ namespace Web.Controllers
                     .Filter(q => q.ContactName != null)
                     .GetPage(pageNumber, pageSize, out totalCustomerCount);
 
-            ViewBag.Customers = new StaticPagedList<Customers>(
-                customers, pageNumber, pageSize, totalCustomerCount);
+            ViewBag.Customers = new StaticPagedList<Customers>(customers, pageNumber, pageSize, totalCustomerCount);
 
             unitOfWork.Save();
 

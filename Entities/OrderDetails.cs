@@ -4,7 +4,7 @@ namespace Entities
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Order Details")]
-    public partial class OrderDetails
+    public partial class OrderDetails : IObjectState
     {
         [Key]
         [Column(Order = 0)]
@@ -26,5 +26,8 @@ namespace Entities
         public virtual Orders Orders { get; set; }
 
         public virtual Products Products { get; set; }
+
+        [NotMapped]
+        public ObjectState State { get; set; }
     }
 }

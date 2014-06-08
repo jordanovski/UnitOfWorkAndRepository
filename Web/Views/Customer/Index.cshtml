@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Customers";
 }
 
@@ -36,14 +35,9 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(
-                    "Edit", "Edit", new { id = item.CustomerID }) |
-
-                @Html.ActionLink(
-                    "Details", "Details", new { id = item.CustomerID }) |
-
-                @Html.ActionLink(
-                    "Delete", "Delete", new { id = item.CustomerID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID })
             </td>
             <td>
                 @item.CompanyName
@@ -57,18 +51,15 @@
             <td>
                 @if (item.Orders.Count > 1)
                 {
-                    @*@item.Orders[1].OrderDate.ToShortDateString()*@
+                    @item.Orders[1].OrderDate.ToShortDateString()
                 }
             </td>
         </tr>
     }
 
-
     <tr>
         <td colspan="9">
-            @Html.PagedListPager(
-                (IPagedList)ViewBag.Customers, page =>
-                    Url.Action("Index", new { page }))
+            @Html.PagedListPager((IPagedList)ViewBag.Customers, page => Url.Action("Index", new { page }))
         </td>
     </tr>
 

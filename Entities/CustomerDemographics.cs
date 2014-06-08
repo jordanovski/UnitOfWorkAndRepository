@@ -4,11 +4,11 @@ namespace Entities
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class CustomerDemographics
+    public partial class CustomerDemographics : IObjectState
     {
         public CustomerDemographics()
         {
-            Customers = new HashSet<Customers>();
+            Customers = new List<Customers>();
         }
 
         [Key]
@@ -19,5 +19,8 @@ namespace Entities
         public string CustomerDesc { get; set; }
 
         public virtual ICollection<Customers> Customers { get; set; }
+
+        [NotMapped]
+        public ObjectState State { get; set; }
     }
 }

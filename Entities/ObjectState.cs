@@ -1,5 +1,5 @@
 ﻿
-namespace Data
+namespace Entities
 {
     public enum ObjectState
     {

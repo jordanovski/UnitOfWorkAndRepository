@@ -2,13 +2,14 @@ namespace Entities
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Customers
+    public partial class Customers : IObjectState
     {
         public Customers()
         {
-            Orders = new HashSet<Orders>();
-            CustomerDemographics = new HashSet<CustomerDemographics>();
+            Orders = new List<Orders>();
+            CustomerDemographics = new List<CustomerDemographics>();
         }
 
         [Key]
@@ -49,5 +50,8 @@ namespace Entities
         public virtual ICollection<Orders> Orders { get; set; }
 
         public virtual ICollection<CustomerDemographics> CustomerDemographics { get; set; }
+
+        [NotMapped]
+        public ObjectState State { get; set; }
     }
 }

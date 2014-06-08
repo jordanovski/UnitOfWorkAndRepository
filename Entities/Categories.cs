@@ -1,14 +1,15 @@
 namespace Entities
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Categories
+    public partial class Categories : IObjectState
     {
         public Categories()
         {
-            Products = new HashSet<Products>();
+            Products = new List<Products>();
         }
 
         [Key]
@@ -25,5 +26,8 @@ namespace Entities
         public byte[] Picture { get; set; }
 
         public virtual ICollection<Products> Products { get; set; }
+
+        [NotMapped]
+        public ObjectState State { get; set; }
     }
 }

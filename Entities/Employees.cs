@@ -5,13 +5,13 @@ namespace Entities
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class Employees
+    public partial class Employees : IObjectState
     {
         public Employees()
         {
-            Employees1 = new HashSet<Employees>();
-            Orders = new HashSet<Orders>();
-            Territories = new HashSet<Territories>();
+            Employees1 = new List<Employees>();
+            Orders = new List<Orders>();
+            Territories = new List<Territories>();
         }
 
         [Key]
@@ -74,5 +74,8 @@ namespace Entities
         public virtual ICollection<Orders> Orders { get; set; }
 
         public virtual ICollection<Territories> Territories { get; set; }
+
+        [NotMapped]
+        public ObjectState State { get; set; }
     }
 }

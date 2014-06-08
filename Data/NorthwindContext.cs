@@ -21,7 +21,7 @@ namespace Data
 
         public override int SaveChanges()
         {
-            //this.ApplyStateChanges();
+            this.ApplyStateChanges();
             return base.SaveChanges();
         }
 
